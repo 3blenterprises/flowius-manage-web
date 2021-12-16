@@ -7,7 +7,6 @@ function App() {
       <header className="App-header">
         <image className="floiuslogo" />
         <div className='rectangel'>
-
           <button className='rectangel2'></button>
           <h4 className='class'>Log in With Email</h4>
 

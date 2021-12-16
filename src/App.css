@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  display: flex;
+  width: auto;
 }
 
 .App-logo {
@@ -14,9 +16,8 @@
 }
 
 .App-header {
- 
-  background-image: url( "292235.jpg");
- 
+  background-image: url("292235.jpg");
+  display: flex;
   width: 1679px;
   height: 917px;
   overflow: hidden;
@@ -29,10 +30,8 @@
 }
 
 .rectangel {
-
-
   margin-top: 16%;
-  display: block;
+  display: flex;
   width: 400px;
   height: 250px;
   margin-left: auto;
@@ -40,48 +39,45 @@
   background: rgba(11, 11, 11, 0.29);
   border-radius: 33px;
 }
-.rectangel2{
- 
-
-
+.rectangel2 {
   position: absolute;
+  display: flex;
   width: 65px;
   height: 65px;
   margin-left: -8%;
   margin-top: 3%;
   background: url("imgbin-gmail-email-computer-icons-google-logo-gmail-BpfqUDAf46njwrCswTz6SnjF5_60x61_1_60x61.jpg");
   border-radius: 40px;
-  }
- .class {
-   position: relative;
-   left:20px;
-   bottom: -70px;
- }
-  .signin2 {
-    margin-top: 40%;
+}
+.class {
+  position: relative;
+  left: 20px;
+  bottom: -70px;
+}
+.signin2 {
+  display: flex;
+  margin-top: 40%;
   width: 450px;
   margin-left: auto;
   margin-right: 25%;
- 
-  }
-  .rectangel3{
-
-    position: absolute;
-    width: 65px;
-    height: 65px;
-    margin-left: -8%;
-    margin-top: -1%;
-    background: url("google-glass-logo_1_60x61.png");
-    border-radius: 110px;
-    }
+}
+.rectangel3 {
+  position: absolute;
+  width: 65px;
+  height: 65px;
+  margin-left: -8%;
+  margin-top: -1%;
+  background: url("google-glass-logo_1_60x61.png");
+  border-radius: 110px;
+}
 .floiuslogo {
   margin-left: 75%;
-  display: block;
-  width: 300px;
-  height: 70px;
-  
+  display: flex;
+  width: auto;
+  height: auto;
+
   margin-top: 2%;
-  background: url("flowius-logo-large.bc080039_700x76_1_300x76.png")
+  background: url("flowius-logo-large.bc080039_700x76_1_300x76.png");
 }
 .App-link {
   color: #61dafb;
