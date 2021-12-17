@@ -8,13 +8,10 @@ function App() {
         <image className="floiuslogo" />
         <div className='rectangel'>
 
-          <button className='rectangel2'></button>
-          <h4 className='class'>Log in With Email</h4>
+          <button className='rectangel2 icon'><h4 className='signin2'>Log in With Email</h4></button>
 
-          <div >
-            <button className='rectangel3'></button>
-            <h4 className='signin2'>Log in With Google</h4>
-          </div>
+
+          <button className='rectangel3'><div className=''><h4 className='signin1'>Log in With Google</h4></div></button>
         </div>
         <a
           className="App-link"
