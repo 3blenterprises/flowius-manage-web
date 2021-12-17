@@ -65,7 +65,7 @@
  
   }
   .rectangel3{
-
+   
     position: absolute;
     width: 65px;
     height: 65px;
@@ -75,7 +75,10 @@
     border-radius: 110px;
     }
 .floiuslogo {
-  margin-left: 75%;
+  position: relative;
+    left:5px;
+    bottom: -175px;
+  margin-left: 35%;
   display: block;
   width: 300px;
   height: 70px;
