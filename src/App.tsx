@@ -1,28 +1,28 @@
 import React from 'react';
+import {BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
+import { createBrowserHistory } from "history";
+import { useEffect, useState } from 'react';
+import Hello from './components/Footer/hey';
+import LogIn from './layouts/login/login';
 import './App.css';
+//import { PromptProps } from 'react-router-dom';
 
-function App() {
+
+const hist = createBrowserHistory();
+//const navigate = useNavigate();
+
+const App = () => { 
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <image className="floiuslogo" />
-        <div className='rectangel'>
-
-          <button className='rectangel2 icon'><h4 className='signin2'>Log in With Email</h4></button>
-
-
-          <button className='rectangel3'><div className=''><h4 className='signin1'>Log in With Google</h4></div></button>
-        </div>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-        </a>
-      </header>
-    </div>
-  );
+    
+<LogIn/>      
+      
+    
+     
+    
+  )
+    
+        
 }
 
 export default App;
