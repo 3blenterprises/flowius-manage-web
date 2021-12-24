@@ -1,28 +1,39 @@
 import React from 'react';
-import {BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Navigate, useNavigate, } from "react-router-dom";
 import { createBrowserHistory } from "history";
 import { useEffect, useState } from 'react';
-import Hello from './components/Footer/hey';
+
 import LogIn from './layouts/login/login';
 import './App.css';
+import Sidebar from './components/SIdebar/Sidebar';
 //import { PromptProps } from 'react-router-dom';
 
 
-const hist = createBrowserHistory();
-//const navigate = useNavigate();
 
-const App = () => { 
+
+const App = () => {
+  const [authenticated, isAuthenticated] = useState(false);
+
+  useEffect(() => {
+    const token = window.localStorage.getItem('auth-user');
+    isAuthenticated(token != null)
+  }, [])
 
   return (
-    
-<LogIn/>      
-      
-    
-     
-    
+    <>
+      <Router>
+        <Routes>
+          <Route path="/login" element={<LogIn />} />
+          <Route path="/Sidebar" element={<Sidebar />} />
+        </Routes>
+      </Router>
+    </>
+
+
   )
-    
-        
+
+
 }
+
 
 export default App;

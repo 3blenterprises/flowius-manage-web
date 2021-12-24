@@ -16,16 +16,16 @@ const LogIn = () => {
     ]
   };
 
-  useEffect(()=>{
-    const unregisterAuthObserver = firebase.auth().onAuthStateChanged( (user) => setLoggedinUser(user) )
-    return () =>{
+  useEffect(() => {
+    const unregisterAuthObserver = firebase.auth().onAuthStateChanged((user) => setLoggedinUser(user))
+    return () => {
       unregisterAuthObserver()
     }
-  },[])
+  }, [])
 
-  
-  const setLoggedinUser = ( user: firebase.User | null ) =>{
-    if(user){
+
+  const setLoggedinUser = (user: firebase.User | null) => {
+    if (user) {
       window.localStorage.setItem('auth-user', JSON.stringify(user))
       window.location.reload();
     }
@@ -36,11 +36,12 @@ const LogIn = () => {
       <header className="App-header">
         <image className="floiuslogo" />
         <div className='rectangel'>
-
-        <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()}/>
+          <div className='rectangel3'>
+            <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
+          </div>
         </div>
-        </header>
-        </div>
+      </header>
+    </div>
   );
 }
 

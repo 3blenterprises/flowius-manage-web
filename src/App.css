@@ -28,7 +28,15 @@
   -o-background-size: cover;
   background-size: 100% 100%;
 }
-
+.firbaseui{
+  position: relative;
+  left:5px;
+  bottom: -60px;
+  width: 270px;
+  height: 45px;
+  border-radius: 10px;
+  background-repeat: no-repeat;
+}
 .rectangel {
 filter: none;
   background-color: rgb(0,0,0); 
@@ -43,13 +51,7 @@ filter: none;
   border-radius: 33px;
 }
 
-.icon{
-  position:relative;
-  background: url("letter.svg");
- background-repeat: no-repeat;
- left:100px;
-  bottom: 0px;
-}
+
 .rectangel2{
  
   position: relative;
@@ -65,42 +67,26 @@ filter: none;
    left:20px;
    bottom: -70px;
  }
- .signin1 {
-  position: relative;
-  left:-80px;
-  bottom: 2px;
-  width: 450px;
-  color: #5a5354;
-}
-  .signin2 {
-    position: relative;
-    left:-80px;
-    bottom: 2px;
-    width: 450px;
-    color: #5a5354;
-  }
+
   .rectangel3{
    
     position: relative;
-    left:5px;
-    bottom: -110px;
+    left:60px;
+    bottom: -70px;
     width: 270px;
     height: 45px;
-    background: url("google-glass-logo_1_60x61_48x40.png");
     border-radius: 13px;
     background-repeat: no-repeat;
     }
 .floiuslogo {
   position: relative;
-    left:5px;
-    bottom: -175px;
-  margin-left: 35%;
-  display: block;
+ left:570px;
+    bottom: -195px;
+    display: block;
   width: 300px;
   height: 70px;
-  
-  margin-top: 2%;
-  background: url("flowius-logo-large.bc080039_700x76_1_300x76.png")
+  background-repeat: no-repeat;
+  background: url("flowius-logo-large.bc080039.png")
 }
 
 .App-link {
