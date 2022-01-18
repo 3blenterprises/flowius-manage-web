@@ -10,6 +10,7 @@ import Sidebar from './components/SIdebar/Sidebar';
 import AdminNavbar from './components/Navbar/AdminNav';
 import Debebe from './components/Navbar/JustHey';
 import ResponsiveDrawer from '../src/components/SIdebar/sidebarsample';
+import { BrowserRouter as Router, } from 'react-router-dom';
 
 
 //import { PromptProps } from 'react-router-dom';
@@ -26,7 +27,11 @@ const App = () => {
     isAuthenticated(token != null)
   }, [])
 
-  return (<Sidebar/>)
+  return (
+          <Router>
+            <Sidebar/>
+          </Router>
+  )
 
 
 }

@@ -22,7 +22,7 @@ import StorageIcon from '@mui/icons-material/Storage';
 import PlumbingIcon from '@mui/icons-material/Plumbing';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import routes from '../../routes'
-import { BrowserRouter as Router, Route, Routes, Navigate, useNavigate, } from "react-router-dom";
+import { Route, Routes, Navigate, useNavigate, } from "react-router-dom";
 
 import Debebe from '../Navbar/JustHey';
 
@@ -119,11 +119,9 @@ const Sidebar = (props: Props) => {
         sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` }, backgroundColor: '#1e1e2e' }}
       >
         <>
-      <Router>
         <Routes>
           <Route path="/debe" element={<Debebe />} />
         </Routes>
-      </Router>
     </>
       </Box>
     </Box>
