@@ -32,7 +32,7 @@ const LogIn = () => {
   }
 
   return (
-    <div className="App">
+    <div className="App" >
       <header className="App-header">
         <image className="floiuslogo" />
         <div className='rectangel'>

@@ -1,5 +1,15 @@
 
-// import React from "react";
+import React from "react";
+ 
+const sample = () => {
+    return(
+    <div>
+        <h1>Abebe Beso Bela</h1>
+        </div>
+    )
+}
+export default sample
+
 // import { Route, Switch, Redirect } from "react-router-dom";
 // import NotificationAlert from "react-notification-alert";
 // import PerfectScrollbar from "perfect-scrollbar";
