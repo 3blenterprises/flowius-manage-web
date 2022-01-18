@@ -1,0 +1,51 @@
+.backgrond{
+    background-color: #1e1e2e;
+    width: 1536px;
+    height: 729px;
+    left: 30px;
+    
+
+}
+.sidebarim{
+   background-color: #0e1fd3;
+    height: 100%;
+    border-radius: 10px; 
+  
+   
+}
+.sidebar {
+    margin: 0;
+    padding: 0;
+    width: 300px;
+    background-color: #1352a0;
+    position: fixed;
+    height: 85%;
+    overflow: auto;
+    left: 0.5%;
+    border-radius: 3.5%;
+  }
+  .content {
+    color: #faf9f6;
+    font-family: sans-serif;
+  }
+  .container {
+    background-color: #1e1e2e;
+    width: auto;
+    height: 1000px;
+  }
+  @media screen and (max-width: 700px) {
+    .sidebar {
+      width: 100%;
+      height: auto;
+      position: relative;
+    }
+    div.content {
+      margin-left: 0;
+    }
+  }
+  @media screen and (max-width: 400px) {
+    .sidebar a {
+      text-align: center;
+      float: none;
+    }
+  }
