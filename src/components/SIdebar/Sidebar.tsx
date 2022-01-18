@@ -16,7 +16,7 @@ import StorageIcon from '@mui/icons-material/Storage';
 import PlumbingIcon from '@mui/icons-material/Plumbing';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 
-const drawerWidth = 240;
+const drawerWidth = 220;
 
 interface Props {
     /**
@@ -41,9 +41,11 @@ const Sidebar = (props: Props) => {
     const container = window !== undefined ? () => window().document.body : undefined;
 
     return (
-        <div>
+        <div
+            style={{ backgroundColor: "#2b2f3e", height: "729px" }}>
 
-            <Box sx={{ display: 'flex' }}>
+            <Box sx={{ display: 'flex' }}
+            >
                 <CssBaseline />
                 <AppBar
                     position="fixed"
@@ -59,6 +61,7 @@ const Sidebar = (props: Props) => {
 
                 </AppBar>
                 <Box
+
                     component="nav"
                     sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
                     aria-label="mailbox folders"
@@ -83,7 +86,7 @@ const Sidebar = (props: Props) => {
                                     <ListItemIcon >
                                         <PersonOutlineIcon color='primary' />
                                     </ListItemIcon>
-                                    <ListItemText style={{ color: "white", fontFamily: "system-ui" }} primary={text} />
+                                    <ListItemText style={{ color: "white", fontFamily: "fangsong" }} primary={text} />
                                 </ListItem>
                             ))}
                         </List>
@@ -121,7 +124,8 @@ const Sidebar = (props: Props) => {
                 </Box>
                 <Box
                     component="main"
-                    sx={{ flexGrow: 1, p: 3, width: { sm: ` calc(100% - ${drawerWidth}px)` }, backgroundColor: '#f1f7fc' }}
+                    sx={{ flexGrow: 1, p: 3, width: { sm: ` calc(100% - ${drawerWidth}px)` }, }}
+
                 >
                     <Toolbar />
                 </Box>

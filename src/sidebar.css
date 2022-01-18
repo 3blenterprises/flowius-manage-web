@@ -13,6 +13,11 @@
   
    
 }
+.font{
+  font-size: 14.2px;
+  font-Family: system-ui
+  
+}
 .sidebar {
     margin: 0;
     padding: 0;
