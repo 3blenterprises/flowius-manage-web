@@ -1,8 +1,9 @@
 import React from 'react'
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import firebase from '../../services/firebaseInit';
 import '../../App.css'
 import { StyledFirebaseAuth } from 'react-firebaseui';
+
 const LogIn = () => {
   const uiConfig = {
     // Popup signin flow rather than redirect flow.

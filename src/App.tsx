@@ -1,16 +1,10 @@
 import React from 'react';
-
-import { createBrowserHistory } from "history";
 import { useEffect, useState } from 'react';
-import Navbar from '../src/components/Navbar/Navbar'
-
 import LogIn from './layouts/login/login';
 import './App.css';
 import Sidebar from './components/SIdebar/Sidebar';
-import AdminNavbar from './components/Navbar/AdminNav';
-import Debebe from './components/Navbar/JustHey';
-import ResponsiveDrawer from '../src/components/SIdebar/sidebarsample';
 import { BrowserRouter as Router, } from 'react-router-dom';
+
 
 
 //import { PromptProps } from 'react-router-dom';
@@ -19,7 +13,7 @@ import { BrowserRouter as Router, } from 'react-router-dom';
 
 
 const App = () => {
-  const [authenticated, isAuthenticated] = useState(false); 
+  const [authenticated, isAuthenticated] = useState(true); 
 
 
   useEffect(() => {
@@ -28,13 +22,30 @@ const App = () => {
   }, [])
 
   return (
-          <Router>
-            <Sidebar/>
-          </Router>
-  )
+    <div>
+      {authenticated ? (
+        <Router>
+        <Sidebar/>
+  </Router>): <LogIn/> }
+        
+      
+         
+      
+     
+      </div>
+      
+      )
 
 
+      
 }
 
 
 export default App;
+/*{authenticated ? (
+  <Router>
+  <Sidebar/>
+</Router>
+) : <LogIn/>}
+
+</div>*/

@@ -4,26 +4,16 @@ import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
-import IconButton from '@mui/material/IconButton';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import MailIcon from '@mui/icons-material/Mail';
-import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Navbar from '../Navbar/Navbar';
-import { Button, Tab, Tabs } from '@mui/material';
-import { Menu } from '@material-ui/icons';
-import AccountTreeIcon from '@mui/icons-material/AccountTree';
-import StorageIcon from '@mui/icons-material/Storage';
-import PlumbingIcon from '@mui/icons-material/Plumbing';
-import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
+import {Tab, Tabs } from '@mui/material';
 import routes from '../../routes'
-import { Route, Routes, Navigate, useNavigate, } from "react-router-dom";
-
+import { Route, Routes, useNavigate, } from "react-router-dom";
 import Debebe from '../Navbar/JustHey';
 
 const drawerWidth = 240;
@@ -40,17 +30,15 @@ const Sidebar = (props: Props) => {
 
 
   const { window } = props;
-  const [mobileOpen, setMobileOpen] = React.useState(false);
   const navigate = useNavigate();
   
 
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
+
 
 
 
   const container = window !== undefined ? () => window().document.body : undefined;
+console.log(container);
 
     return (
         <div>
@@ -106,7 +94,8 @@ const Sidebar = (props: Props) => {
                     key={item.text}
                     onClick={() => navigate(item.path)}
                   >
-                    <ListItemText primary = {item.text} />
+                    <ListItemText primary={item.text} />
+                    <ListItemIcon>{  }</ListItemIcon>
 
                   </ListItem>
                 ))}
@@ -117,7 +106,7 @@ const Sidebar = (props: Props) => {
       <Box
         
         sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` }, backgroundColor: '#1e1e2e' }}
-      >
+          >
         <>
         <Routes>
           <Route path="/debe" element={<Debebe />} />
