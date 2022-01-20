@@ -53,7 +53,7 @@ console.log(container);
         }}
                 >
                     
-                    <Toolbar>
+                    <Toolbar style={{ backgroundColor: "#1e1e2f" }}>
                     <Tabs
       >
         <Tab
@@ -78,16 +78,17 @@ console.log(container);
           variant="permanent"
           sx={{
             display: { xs: 'none', sm: 'block' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth, backgroundColor: "#1352a0" },
+            '& .MuiDrawer-paper': { width: drawerWidth, backgroundColor: "#1e1e2f" },
             
           }}
           open
                     >
-                        <Toolbar>
-                        <Typography variant = 'h5'> Flowius Manage </Typography>
+                        <Toolbar style={{ backgroundColor: "#1e1e2f" }}>
+                        
+                     <Typography variant='h6' style={{ color: '#1976d2' }}> Flowius Manage</Typography> 
                         </Toolbar>
               <Divider />
-              <List>
+              <List className='content'>
                 {routes.map(item => (
                   <ListItem
                     button
