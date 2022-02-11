@@ -14,7 +14,7 @@ import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import firebase from '../../services/firebaseInit'
-import { Divider} from '@mui/material';
+
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -164,19 +164,19 @@ const Navbar = () => {
     );
 
     return (
-        <Box sx={{ flexGrow: 1 }} >
+        <Box sx={{ flexGrow: 1 }} className = 'Navbar' >
 
-            <Toolbar style={{ backgroundColor: "#1e1e2f" }}>
+            <Toolbar >
                 <Box sx={{ flexGrow: 1 }} />
                 <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
                     <Search>
                         <SearchIconWrapper>
-                            <SearchIcon fontSize='small' color='primary' />
-
+                            <SearchIcon fontSize='small' style = {{color: '#2579f7'}} />
                         </SearchIconWrapper>
                         <StyledInputBase
                             placeholder="Search…"
                             inputProps={{ 'aria-label': 'search' }}
+                            style ={{width: '10em', height: '3.5em'}}
                         />
                     </Search>
                     <IconButton
@@ -185,7 +185,7 @@ const Navbar = () => {
                         color="inherit"
                     >
                         <Badge badgeContent={17} color="error">
-                            <NotificationsIcon color='primary' />
+                            <NotificationsIcon style = {{color: '#2579f7'}} />
                         </Badge>
                     </IconButton>
                     <IconButton
@@ -197,7 +197,7 @@ const Navbar = () => {
                         onClick={handleProfileMenuOpen}
 
                     >
-                        <AccountCircle color='primary' />
+                        <AccountCircle style = {{color: '#2579f7'}} />
 
                     </IconButton>
                 </Box>

@@ -1,3 +1,7 @@
 .toolbar {
   background-color: none;
 }
+.Navbar {
+  display: flexbox;
+  flex-direction: inherit;
+}

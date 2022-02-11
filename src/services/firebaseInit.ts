@@ -3,14 +3,14 @@ import 'firebase/compat/auth';
 import 'firebase/compat/firestore'; 
 
 const config = {
-    apiKey: "AIzaSyBTdnuPCh1cJ_TGpE0t2Lo9Ye2EJ8M6Xtg",
-    authDomain: "flowius-pay.firebaseapp.com",
-    databaseURL: "https://flowius-pay.firebaseio.com",
-    projectId: "flowius-pay",
-    storageBucket: "flowius-pay.appspot.com",
-    messagingSenderId: "315603218605",
-    appId: "1:315603218605:web:233c79b0c3fa4779179624"
-};
+    apiKey: "AIzaSyBhcQLvsFIVxSMWPnc5BFur66_hk_JaVM8",
+    authDomain: "flowius-manage.firebaseapp.com",
+    databaseURL: "https://flowius-manage.firebaseio.com",
+    projectId: "flowius-manage",
+    storageBucket: "flowius-manage.appspot.com",
+    messagingSenderId: "818432948406",
+    appId: "1:818432948406:web:89afc29002c0294b7a8e17"
+  };
   
 firebase.initializeApp(config)
 

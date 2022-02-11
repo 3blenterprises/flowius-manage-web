@@ -3,7 +3,8 @@ import { useEffect, useState } from 'react';
 import LogIn from './layouts/login/login';
 import './App.css';
 import Sidebar from './components/SIdebar/Sidebar';
-import { BrowserRouter as Router, } from 'react-router-dom';
+import { BrowserRouter as Router  } from 'react-router-dom';
+
 
 
 
@@ -25,6 +26,7 @@ const App = () => {
     <div>
       {authenticated ? (
         <Router>
+          
         <Sidebar/>
   </Router>): <LogIn/> }
         
