@@ -14,6 +14,7 @@ import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import firebase from '../../services/firebaseInit'
+import { useEffect, useState } from 'react';
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -57,9 +58,29 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const Navbar = () => {
+    
+    interface Iphoto {
+        photoURL: string;  
+    }
+
+
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
-    React.useState<null | HTMLElement>(null);
+        React.useState<null | HTMLElement>(null);
+    const [user1, setUser1] = useState<Iphoto>({} as Iphoto)
+    
+    useEffect(() => {
+        const userInfo = window.localStorage.getItem('auth-user');
+        if (userInfo !== null) {
+            const user = JSON.parse(userInfo)
+            setUser1(user);
+        }
+       
+    }, [])
+     
+    
+    console.log(user1);
+    
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -197,7 +218,8 @@ const Navbar = () => {
                         onClick={handleProfileMenuOpen}
 
                     >
-                        <AccountCircle style = {{color: '#2579f7'}} />
+                         {/* <AccountCircle style = {{color: '#2579f7'}} />  */}
+                        <img alt='avatar' src={user1.photoURL} style={{borderRadius: '100px', width: '1em'}}/>  
 
                     </IconButton>
                 </Box>
