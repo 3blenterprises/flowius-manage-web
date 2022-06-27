@@ -3,14 +3,17 @@ import logo from "../../assets/logo-1.png";
 import { useState } from "react";
 import firebase from "../../services/firebaseInit";
 import CloseClickOutside from "../ClickOutside";
+import { Project } from "../../services/orgTypes";
+import Selector from "../input/Select";
 
 const { auth } = firebase;
 
 interface TopMenuProps {
   user: User;
+  projects: Project[];
 }
 
-const TopMenu = ({ user }: TopMenuProps) => {
+const TopMenu = ({ user, projects }: TopMenuProps) => {
   const [showTopMenu, setShowTopMenu] = useState(false);
 
   const logOut = () => {
@@ -28,6 +31,11 @@ const TopMenu = ({ user }: TopMenuProps) => {
             Flowius
           </span>
         </a>
+        <Selector
+          items={projects}
+          selector={"ProjectName"}
+          onChange={console.log}
+        />
         <div className="flex items-center md:order-2">
           <button
             type="button"

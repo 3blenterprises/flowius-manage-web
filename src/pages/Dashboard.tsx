@@ -26,8 +26,7 @@ const DashBoard = ({ user }: DashboardProps) => {
 
   return (
     <>
-      <TopMenu user={user} />
-      <div>{projects.map((p) => p.ProjectName)}</div>
+      <TopMenu projects={projects} user={user} />
     </>
   );
 };
