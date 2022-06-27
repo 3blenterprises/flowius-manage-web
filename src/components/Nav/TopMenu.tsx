@@ -1,5 +1,6 @@
 import { User, signOut } from "firebase/auth";
 import logo from "../../assets/logo-1.png";
+import icon from "../../assets/logo-blue.png";
 import { useState } from "react";
 import firebase from "../../services/firebaseInit";
 import CloseClickOutside from "../ClickOutside";
@@ -25,10 +26,16 @@ const TopMenu = ({ user, projects }: TopMenuProps) => {
   return (
     <nav className="bg-white shadow-sm  border-gray-200 px-2 sm:px-4 py-2.5 rounded ">
       <div className="container flex flex-wrap justify-between items-center mx-auto">
-        <a href="/" className="flex items-center">
+        <a href="/" className="flex justify-center items-center">
           <img src={logo} className="mr-3 h-6 sm:h-9" alt="Flowius Logo" />
-          <span className="self-center text-flowius-blue text-xl font-semibold whitespace-nowrap ">
-            Flowius
+
+          <span className="w-24">
+            <img
+              style={{ width: "100px" }}
+              className="w-24"
+              src={icon}
+              alt="white logo"
+            />
           </span>
         </a>
         <Selector
