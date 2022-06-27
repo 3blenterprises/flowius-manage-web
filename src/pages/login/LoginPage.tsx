@@ -1,23 +1,58 @@
 import googleLogo from "../../assets/google.svg";
-import { useState } from "react";
-import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { useEffect, useState } from "react";
+import {
+  signInWithPopup,
+  GoogleAuthProvider,
+  onAuthStateChanged,
+  User,
+  signOut,
+} from "firebase/auth";
 
 import logo from "../../assets/logo.png";
 import Spinner from "../../components/Spinner";
 import firebase from "../../services/firebaseInit";
 import { toast } from "react-toastify";
+import { validUsers } from "../../services/authService";
 
 const { auth } = firebase;
 
-const LoginPage = () => {
-  const [loading, setLoading] = useState(false);
+interface ILoginProps {
+  setUser: (user: User | null) => void;
+}
+
+const LoginPage = ({ setUser }: ILoginProps) => {
+  const [loading, setLoading] = useState(true);
+
+  let timeout: boolean;
+
+  const loginUser = async (u: User | null) => {
+    if (timeout) return;
+    if (!u) {
+      setLoading(false);
+      return;
+    }
+    timeout = true;
+    const validUser = await validUsers(u?.email ?? "");
+    if (validUser) {
+      setUser(u);
+      toast.success("Sign in successful");
+    } else {
+      signOut(auth);
+      setLoading(false);
+      toast.error("No User with this email address");
+    }
+  };
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, loginUser);
+    return () => unsubscribe();
+  }, []);
 
   const login = async () => {
     const provider = new GoogleAuthProvider();
     setLoading(true);
     try {
       await signInWithPopup(auth, provider);
-      toast.success("Sign in successful");
     } catch (error) {
       console.log(error);
       toast.error("Cant sign in");
