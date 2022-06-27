@@ -9,3 +9,8 @@
     background-position: center center;
   }
   
+  .top-avatar {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+  }

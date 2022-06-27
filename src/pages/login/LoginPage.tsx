@@ -1,5 +1,5 @@
 import googleLogo from "../../assets/google.svg";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   signInWithPopup,
   GoogleAuthProvider,
@@ -13,6 +13,7 @@ import Spinner from "../../components/Spinner";
 import firebase from "../../services/firebaseInit";
 import { toast } from "react-toastify";
 import { validUsers } from "../../services/authService";
+import useDidMountEffect from "../../components/useDidMountEffect";
 
 const { auth } = firebase;
 
@@ -23,18 +24,15 @@ interface ILoginProps {
 const LoginPage = ({ setUser }: ILoginProps) => {
   const [loading, setLoading] = useState(true);
 
-  let timeout: boolean;
-
   const loginUser = async (u: User | null) => {
-    if (timeout) return;
     if (!u) {
       setLoading(false);
       return;
     }
-    timeout = true;
     const validUser = await validUsers(u?.email ?? "");
     if (validUser) {
       setUser(u);
+      localStorage.setItem("email", u?.email ?? "");
       toast.success("Sign in successful");
     } else {
       signOut(auth);
@@ -43,7 +41,7 @@ const LoginPage = ({ setUser }: ILoginProps) => {
     }
   };
 
-  useEffect(() => {
+  useDidMountEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, loginUser);
     return () => unsubscribe();
   }, []);
