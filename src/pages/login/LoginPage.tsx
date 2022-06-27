@@ -1,10 +1,29 @@
-import logo from "../../assets/logo.png";
-import Spinner from "../../components/Spinner";
 import googleLogo from "../../assets/google.svg";
 import { useState } from "react";
+import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+
+import logo from "../../assets/logo.png";
+import Spinner from "../../components/Spinner";
+import firebase from "../../services/firebaseInit";
+import { toast } from "react-toastify";
+
+const { auth } = firebase;
 
 const LoginPage = () => {
-  const [loading] = useState(true);
+  const [loading, setLoading] = useState(false);
+
+  const login = async () => {
+    const provider = new GoogleAuthProvider();
+    setLoading(true);
+    try {
+      await signInWithPopup(auth, provider);
+      toast.success("Sign in successful");
+    } catch (error) {
+      console.log(error);
+      toast.error("Cant sign in");
+    }
+    setLoading(false);
+  };
 
   return (
     <div className=" login-bg grid grid-col md:grid-cols-5 md:grid-rows-1 h-screen">
@@ -32,10 +51,10 @@ const LoginPage = () => {
         <div className="w-full h-full flex justify-center">
           <div className="hover:scale-105 my-auto md:w-1/3 flex flex-col">
             <button
-              onClick={console.log}
+              onClick={login}
               className="sign-in-with-microsoft h-[41px] font-semibold text-base border justify-center border-[#5e5e5e] px-3 items-center flex text-[#8c8c8c]"
             >
-              {!loading ? (
+              {loading ? (
                 <Spinner />
               ) : (
                 <>
