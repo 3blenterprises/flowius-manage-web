@@ -55,7 +55,7 @@ const TopMenu = ({ user }: TopMenuProps) => {
           <button
             type="button"
             onClick={() => setShowTopMenu((n) => !n)}
-            className="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 "
+            className="flex mr-3 text-sm bg-gray-100 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 "
             id="user-menu-button"
             aria-expanded="false"
             data-dropdown-toggle="dropdown"

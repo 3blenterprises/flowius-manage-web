@@ -8,6 +8,7 @@ import { ProjectContext } from "../context/ProjectContext";
 import Materials from "./Materials";
 import Home from "./Home";
 import Cases from "./Cases";
+import SideBar from "../components/Nav/SideBar";
 
 interface DashboardProps {
   user: User;
@@ -28,11 +29,14 @@ const DashBoard = ({ user }: DashboardProps) => {
   return (
     <BrowserRouter>
       <TopMenu user={user} />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/materials" element={<Materials />} />
-        <Route path="/cases" element={<Cases />} />
-      </Routes>
+      <div className="flex w-full h-[90vh]">
+        <SideBar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/materials" element={<Materials />} />
+          <Route path="/cases" element={<Cases />} />
+        </Routes>
+      </div>
     </BrowserRouter>
   );
 };
