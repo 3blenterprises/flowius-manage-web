@@ -1,7 +1,6 @@
 import { FC, useCallback, useContext, useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
 import Badge from "../components/badge/Badge";
-import Spinner from "../components/Spinner";
 import { ProjectContext } from "../context/ProjectContext";
 import { getProjectCases } from "../services/caseService";
 import { ICases } from "../services/orgTypes";
@@ -26,7 +25,19 @@ const Cases: FC = () => {
     pullCases();
   }, [pullCases]);
 
+  const formatDate = (date: Date) => {
+    const month = date.toLocaleString("en-us", { month: "long" });
+    const year = date.getFullYear();
+    const day = date.getDate();
+    return `${day} ${month} ${year}`;
+  };
+
   const columns = [
+    {
+      name: "Id",
+      selector: (row: ICases) => row.id,
+      sortable: true,
+    },
     {
       name: "Title",
       selector: (row: ICases) => row.caseName,
@@ -52,6 +63,11 @@ const Cases: FC = () => {
       cell: (row: ICases) => (
         <Badge done={row.done}>{row.done ? "Completed" : "Open"}</Badge>
       ),
+      sortable: true,
+    },
+    {
+      name: "Created At",
+      selector: (row: ICases) => formatDate(row.timestamp.toDate()),
       sortable: true,
     },
   ];
