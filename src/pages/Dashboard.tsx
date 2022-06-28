@@ -15,12 +15,12 @@ interface DashboardProps {
 }
 
 const DashBoard = ({ user }: DashboardProps) => {
-  const projectContext = useContext(ProjectContext);
+  const { setProjects } = useContext(ProjectContext);
 
   const pullProjects = useCallback(async () => {
     const proj = await getProjects();
-    projectContext.setProjects(proj);
-  }, [projectContext]);
+    setProjects(proj);
+  }, [setProjects]);
 
   useDidMountEffect(() => {
     pullProjects();
