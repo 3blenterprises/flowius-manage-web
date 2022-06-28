@@ -2,13 +2,22 @@ import { FC, useCallback, useContext, useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
 import Badge from "../components/badge/Badge";
 import { ProjectContext } from "../context/ProjectContext";
-import { getProjectCases } from "../services/caseService";
+import { deleteCase, getProjectCases } from "../services/caseService";
 import { ICases } from "../services/orgTypes";
 import Loader from "../components/Loader";
+import MaterialIcon from "../components/MaterialIcon";
+import { toast } from "react-toastify";
+
+interface Selected {
+  allSelected: boolean;
+  selectedCount: number;
+  selectedRows: ICases[];
+}
 
 const Cases: FC = () => {
   const [cases, setCases] = useState<ICases[]>([]);
   const [loading, setLoading] = useState(false);
+  const [selected, setSelected] = useState<Selected>();
   const projectContext = useContext(ProjectContext);
 
   const { id } = projectContext.selectedProject;
@@ -72,12 +81,30 @@ const Cases: FC = () => {
     },
   ];
 
+  const deleteSelected = async () => {
+    if (!selected) return;
+    const { selectedRows } = selected;
+    for (const row of selectedRows) {
+      await deleteCase(id, row.id);
+    }
+    toast.success(`${selectedRows.length} Items deleted`);
+  };
+
   return (
     <div className="m-2 w-full">
+      {(selected?.selectedCount ?? 0) > 0 && (
+        <MaterialIcon onClick={deleteSelected} icon="delete" />
+      )}
       {loading ? (
         <Loader />
       ) : (
-        <DataTable pagination={true} columns={columns} data={cases} />
+        <DataTable
+          selectableRows={false}
+          onSelectedRowsChange={setSelected}
+          pagination={true}
+          columns={columns}
+          data={cases}
+        />
       )}
     </div>
   );
