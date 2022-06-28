@@ -6,6 +6,7 @@ import firebase from "../../services/firebaseInit";
 import CloseClickOutside from "../ClickOutside";
 import Selector from "../input/Select";
 import { ProjectContext } from "../../context/ProjectContext";
+import { Link } from "react-router-dom";
 
 const { auth } = firebase;
 
@@ -33,7 +34,7 @@ const TopMenu = ({ user }: TopMenuProps) => {
   return (
     <nav className="bg-white shadow-sm  border-gray-200 px-2 sm:px-4 py-2.5 rounded ">
       <div className="container flex flex-wrap justify-between items-center mx-auto">
-        <a href="/" className="flex justify-center items-center">
+        <Link to="/" className="flex justify-center items-center">
           <img src={logo} className="mr-3 h-6 sm:h-9" alt="Flowius Logo" />
 
           <span className="w-24">
@@ -44,7 +45,7 @@ const TopMenu = ({ user }: TopMenuProps) => {
               alt="white logo"
             />
           </span>
-        </a>
+        </Link>
         <Selector
           items={projectContext.projects}
           selector={"ProjectName"}
@@ -83,37 +84,37 @@ const TopMenu = ({ user }: TopMenuProps) => {
               </div>
               <ul className="py-1" aria-labelledby="dropdown">
                 <li>
-                  <a
-                    href="#"
+                  <Link
+                    to=""
                     className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100   "
                   >
                     Dashboard
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
-                    href="#"
+                  <Link
+                    to="/materials"
                     className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100   "
                   >
                     Materials
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
-                    href="#"
+                  <Link
+                    to="/cases"
                     className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100   "
                   >
                     Cases
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
+                  <Link
                     onClick={logOut}
-                    href="#"
+                    to="#"
                     className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100   "
                   >
                     Sign out
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
