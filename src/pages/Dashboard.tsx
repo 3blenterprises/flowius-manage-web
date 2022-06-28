@@ -1,23 +1,22 @@
-import { Project } from "../services/orgTypes";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useContext } from "react";
 import { getProjects } from "../services/authService";
 import useDidMountEffect from "../components/useDidMountEffect";
 import TopMenu from "../components/Nav/TopMenu";
 import { User } from "firebase/auth";
+import { ProjectContext } from "../context/ProjectContext";
 
 interface DashboardProps {
   user: User;
 }
 
 const DashBoard = ({ user }: DashboardProps) => {
-  const [projects, setProjects] = useState<Project[]>([]);
+  const projectContext = useContext(ProjectContext);
 
   const pullProjects = useCallback(async () => {
     const email = localStorage.getItem("email");
     if (!email) return;
     const proj = await getProjects();
-    console.log(proj);
-    setProjects(proj);
+    projectContext.setProjects(proj);
   }, []);
 
   useDidMountEffect(() => {
@@ -26,7 +25,7 @@ const DashBoard = ({ user }: DashboardProps) => {
 
   return (
     <>
-      <TopMenu projects={projects} user={user} />
+      <TopMenu user={user} />
     </>
   );
 };

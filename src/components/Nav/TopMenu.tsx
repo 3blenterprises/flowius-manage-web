@@ -1,26 +1,33 @@
 import { User, signOut } from "firebase/auth";
 import logo from "../../assets/logo-1.png";
 import icon from "../../assets/logo-blue.png";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import firebase from "../../services/firebaseInit";
 import CloseClickOutside from "../ClickOutside";
-import { Project } from "../../services/orgTypes";
 import Selector from "../input/Select";
+import { ProjectContext } from "../../context/ProjectContext";
 
 const { auth } = firebase;
 
 interface TopMenuProps {
   user: User;
-  projects: Project[];
 }
 
-const TopMenu = ({ user, projects }: TopMenuProps) => {
+const TopMenu = ({ user }: TopMenuProps) => {
   const [showTopMenu, setShowTopMenu] = useState(false);
+
+  const projectContext = useContext(ProjectContext);
 
   const logOut = () => {
     signOut(auth);
     localStorage.clear();
     window.location.reload();
+  };
+
+  const setProject = (id: string) => {
+    const project = projectContext.projects.find((p) => p.id === id);
+    if (!project) return;
+    projectContext.setSelectedProject(project);
   };
 
   return (
@@ -39,9 +46,9 @@ const TopMenu = ({ user, projects }: TopMenuProps) => {
           </span>
         </a>
         <Selector
-          items={projects}
+          items={projectContext.projects}
           selector={"ProjectName"}
-          onChange={console.log}
+          onChange={setProject}
         />
         <div className="flex items-center md:order-2">
           <button

@@ -18,7 +18,7 @@ const Selector = (props: Props) => {
         focus:text-gray-700 focus:bg-white focus:border-amber-400 focus:outline-none"
           aria-label="Default select example"
         >
-          <option selected>{props.label ?? "Select Project"}</option>
+          <option>{props.label ?? "Select Project"}</option>
           {props.items.map((item, i) => {
             return (
               <option key={i} value={item.id}>
