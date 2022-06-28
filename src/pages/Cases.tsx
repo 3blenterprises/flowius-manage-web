@@ -5,6 +5,7 @@ import { ProjectContext } from "../context/ProjectContext";
 import { deleteCase, getProjectCases } from "../services/caseService";
 import { ICases } from "../services/orgTypes";
 import Loader from "../components/Loader";
+import Design from "../components/MaterialDesign/MaterialDesign";
 import MaterialIcon from "../components/MaterialIcon";
 import { toast } from "react-toastify";
 
@@ -19,7 +20,6 @@ const Cases: FC = () => {
   const [loading, setLoading] = useState(false);
   const [selected, setSelected] = useState<Selected>();
   const projectContext = useContext(ProjectContext);
-
   const { id } = projectContext.selectedProject;
 
   const pullCases = useCallback(async () => {
@@ -64,7 +64,7 @@ const Cases: FC = () => {
     },
     {
       name: "Material",
-      selector: (row: ICases) => row.materials.length,
+      cell: (row: ICases) => <Design>{row.materials.length}</Design>,
       sortable: true,
     },
     {
