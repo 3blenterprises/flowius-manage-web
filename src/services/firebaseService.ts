@@ -14,10 +14,14 @@ import { IFirebaseObject } from "./orgTypes";
 
 const { db } = firebase;
 
+const removeSpace = (url: string) => {
+  return url.replaceAll(" ", "");
+};
+
 export const getFirebaseCollection = <T>(url: string): Promise<T[]> => {
   return new Promise(async (resolve, reject) => {
     try {
-      const citiesCol = collection(db, url);
+      const citiesCol = collection(db, removeSpace(url));
       const citySnapshot = await getDocs(citiesCol);
       const ret = citySnapshot.docs.map((doc) => doc.data() as T);
       return resolve(ret);
@@ -34,7 +38,7 @@ export const updateCreateSingleDocument = <T>(
 ) => {
   return new Promise(async (resolve, reject) => {
     try {
-      const docRef = doc(collection(db, url), id);
+      const docRef = doc(collection(db, removeSpace(url)), id);
       await setDoc(docRef, data, { merge: true });
       resolve(data);
     } catch (error) {
@@ -45,7 +49,7 @@ export const updateCreateSingleDocument = <T>(
 
 export const getFirebaseDocument = <T>(url: string, id: string): Promise<T> => {
   return new Promise(async (resolve, reject) => {
-    const docRef = doc(db, url, id);
+    const docRef = doc(db, removeSpace(url), id);
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
       resolve(docSnap.data() as T);
@@ -58,7 +62,7 @@ export const getFirebaseDocument = <T>(url: string, id: string): Promise<T> => {
 export const deleteDocument = (url: string, id: string): Promise<string> => {
   return new Promise(async (resolve, reject) => {
     try {
-      await deleteDoc(doc(db, url, id));
+      await deleteDoc(doc(db, removeSpace(url), id));
       resolve(id);
     } catch (error) {
       reject(error);
@@ -71,7 +75,10 @@ export const getFirebaseCollectionWithQuery = <T>(
   Query: any[]
 ): Promise<T[]> => {
   return new Promise(async (resolve, reject) => {
-    const q = query(collection(db, url), where(Query[0], Query[1], Query[2]));
+    const q = query(
+      collection(db, removeSpace(url)),
+      where(Query[0], Query[1], Query[2])
+    );
     const ret: T[] = [];
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
@@ -88,7 +95,7 @@ export const writeFirebaseBatch = <T extends IFirebaseObject>(
   return new Promise(async (resolve, reject) => {
     const batch = writeBatch(db);
     data.forEach((d) => {
-      batch.set(doc(collection(db, url), d.id), d);
+      batch.set(doc(collection(db, removeSpace(url)), d.id), d);
     });
     await batch.commit();
     resolve(data);
