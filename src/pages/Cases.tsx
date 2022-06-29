@@ -6,12 +6,12 @@ import { ProjectContext } from "../context/ProjectContext";
 import { getProjectCases } from "../services/caseService";
 import { ICases } from "../services/orgTypes";
 import Loader from "../components/Loader";
+import Design from "../components/MaterialDesign/MaterialDesign";
 
 const Cases: FC = () => {
   const [cases, setCases] = useState<ICases[]>([]);
   const [loading, setLoading] = useState(false);
   const projectContext = useContext(ProjectContext);
-
   const { id } = projectContext.selectedProject;
 
   const pullCases = useCallback(async () => {
@@ -44,7 +44,7 @@ const Cases: FC = () => {
     },
     {
       name: "Material",
-      selector: (row: ICases) => row.materials.length,
+      cell: (row: ICases) => <Design>{row.materials.length}</Design>,
       sortable: true,
     },
     {
