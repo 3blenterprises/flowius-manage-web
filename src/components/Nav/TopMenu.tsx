@@ -7,6 +7,7 @@ import CloseClickOutside from "../ClickOutside";
 import Selector from "../input/Select";
 import { ProjectContext } from "../../context/ProjectContext";
 import { Link } from "react-router-dom";
+import MaterialIcon from "../MaterialIcon";
 
 const { auth } = firebase;
 
@@ -16,6 +17,7 @@ interface TopMenuProps {
 
 const TopMenu = ({ user }: TopMenuProps) => {
   const [showTopMenu, setShowTopMenu] = useState(false);
+  const [open, setOpen] = useState(false); 
 
   const projectContext = useContext(ProjectContext);
 
@@ -52,6 +54,21 @@ const TopMenu = ({ user }: TopMenuProps) => {
           onChange={setProject}
         />
         <div className="flex items-center md:order-2">
+          <button
+            className="mr-3 mt-2"
+            onClick={() => setOpen((n) => !n)}
+          >
+          <MaterialIcon icon="notifications" style={{color: '#1286D8'}} outline={false} className="" />
+          </button>
+          <CloseClickOutside onClose={() => setOpen(false)}>
+          <div id ="dropdown" className={`top-avatar ${
+                open ? "opacity-100" : "opacity-0"
+              } md:mr-0 mr-3 z-50 my-4 text-base list-none bg-white rounded divide-y divide-gray-100 shadow  `} >
+              <div>
+              {/* Todo - Notification modal  */}
+              </div>
+            </div>
+            </CloseClickOutside>
           <button
             type="button"
             onClick={() => setShowTopMenu((n) => !n)}
