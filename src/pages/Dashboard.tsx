@@ -15,12 +15,13 @@ interface DashboardProps {
 }
 
 const DashBoard = ({ user }: DashboardProps) => {
-  const { setProjects } = useContext(ProjectContext);
+  const { setProjects, setSelectedProject } = useContext(ProjectContext);
 
   const pullProjects = useCallback(async () => {
     const proj = await getProjects();
     setProjects(proj);
-  }, [setProjects]);
+    setSelectedProject(proj[0]);
+  }, [setProjects, setSelectedProject]);
 
   useDidMountEffect(() => {
     pullProjects();
@@ -31,11 +32,13 @@ const DashBoard = ({ user }: DashboardProps) => {
       <TopMenu user={user} />
       <div className="flex w-full h-[90vh]">
         <SideBar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/materials" element={<Materials />} />
-          <Route path="/cases" element={<Cases />} />
-        </Routes>
+        <div className="container m-2 w-full overflow-auto">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/materials" element={<Materials />} />
+            <Route path="/cases" element={<Cases />} />
+          </Routes>
+        </div>
       </div>
     </BrowserRouter>
   );

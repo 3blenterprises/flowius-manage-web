@@ -17,7 +17,7 @@ interface TopMenuProps {
 
 const TopMenu = ({ user }: TopMenuProps) => {
   const [showTopMenu, setShowTopMenu] = useState(false);
-  const [open, setOpen] = useState(false); 
+  const [open, setOpen] = useState(false);
 
   const projectContext = useContext(ProjectContext);
 
@@ -34,8 +34,8 @@ const TopMenu = ({ user }: TopMenuProps) => {
   };
 
   return (
-    <nav className="bg-white shadow-sm  border-gray-200 px-2 sm:px-4 py-2.5 rounded ">
-      <div className="container flex flex-wrap justify-between items-center mx-auto">
+    <nav className="bg-white shadow-sm  border-gray-200  py-2.5 rounded ">
+      <div className="flex flex-wrap justify-between items-center mx-2 ">
         <Link to="/" className="flex justify-center items-center">
           <img src={logo} className="mr-3 h-6 sm:h-9" alt="Flowius Logo" />
 
@@ -52,23 +52,22 @@ const TopMenu = ({ user }: TopMenuProps) => {
           items={projectContext.projects}
           selector={"ProjectName"}
           onChange={setProject}
+          selected={projectContext.selectedProject.id}
         />
         <div className="flex items-center md:order-2">
-          <button
-            className="mr-3 mt-2"
-            onClick={() => setOpen((n) => !n)}
-          >
-          <MaterialIcon icon="notifications" style={{color: '#1286D8'}} outline={false} className="" />
+          <button className="mr-3 mt-2" onClick={() => setOpen((n) => !n)}>
+            <MaterialIcon icon="notifications" className="text-flowius-blue" />
           </button>
           <CloseClickOutside onClose={() => setOpen(false)}>
-          <div id ="dropdown" className={`top-avatar ${
+            <div
+              id="dropdown"
+              className={`top-avatar ${
                 open ? "opacity-100" : "opacity-0"
-              } md:mr-0 mr-3 z-50 my-4 text-base list-none bg-white rounded divide-y divide-gray-100 shadow  `} >
-              <div>
-              {/* Todo - Notification modal  */}
-              </div>
+              } md:mr-0 mr-3 z-50 my-4 text-base list-none bg-white rounded divide-y divide-gray-100 shadow  `}
+            >
+              <div>{/* Todo - Notification modal  */}</div>
             </div>
-            </CloseClickOutside>
+          </CloseClickOutside>
           <button
             type="button"
             onClick={() => setShowTopMenu((n) => !n)}
