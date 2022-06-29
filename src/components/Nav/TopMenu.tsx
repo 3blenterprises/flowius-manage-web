@@ -52,6 +52,7 @@ const TopMenu = ({ user }: TopMenuProps) => {
           items={projectContext.projects}
           selector={"ProjectName"}
           onChange={setProject}
+          selected={projectContext.selectedProject.id}
         />
         <div className="flex items-center md:order-2">
           <button
