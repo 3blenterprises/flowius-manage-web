@@ -32,7 +32,7 @@ const DashBoard = ({ user }: DashboardProps) => {
       <TopMenu user={user} />
       <div className="flex w-full h-[90vh]">
         <SideBar />
-        <div className="m-2 w-full overflow-auto">
+        <div className="container m-2 w-full overflow-auto">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/materials" element={<Materials />} />

@@ -1,3 +1,4 @@
+import { Timestamp } from "firebase/firestore/lite";
 export interface IFirebaseObject {
   id: string;
 }
@@ -21,11 +22,6 @@ export interface Material {
   type: string;
   unit: string;
   quantity: string;
-}
-
-export interface Timestamp {
-  seconds: number;
-  nanoseconds: number;
 }
 
 export interface ICases {
