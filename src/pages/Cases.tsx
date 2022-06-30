@@ -17,7 +17,7 @@ interface Selected {
   selectedRows: ICases[];
 }
 
-const formatDate = (date: Date) => {
+export const formatDate = (date: Date) => {
   const month = date.toLocaleString("en-us", { month: "long" });
   const year = date.getFullYear();
   const day = date.getDate();
