@@ -3,12 +3,13 @@ import DataTable from "react-data-table-component";
 import Badge from "../components/badge/Badge";
 import { ProjectContext } from "../context/ProjectContext";
 import { deleteCase, getProjectCases } from "../services/caseService";
-import { ICases } from "../services/orgTypes";
+import { ICases, Material } from "../services/orgTypes";
 import Loader from "../components/Loader";
 import Design from "../components/MaterialDesign/MaterialDesign";
 import MaterialIcon from "../components/MaterialIcon";
 import { toast } from "react-toastify";
 import Modal from "../components/modal/Modal";
+import MaterialList from "../components/Material/MaterialList";
 
 interface Selected {
   allSelected: boolean;
@@ -28,6 +29,7 @@ const Cases: FC = () => {
   const [loading, setLoading] = useState(false);
   const [selected, setSelected] = useState<Selected>();
   const [openModal, setOpenModal] = useState(false);
+  const [selectedMaterials, setMaterials] = useState<Material[]>([]);
   const projectContext = useContext(ProjectContext);
   const { id } = projectContext.selectedProject;
 
@@ -66,7 +68,12 @@ const Cases: FC = () => {
     {
       name: "Material",
       cell: (row: ICases) => (
-        <Design onClick={() => setOpenModal(true)}>
+        <Design
+          onClick={() => {
+            setMaterials(row.materials);
+            setOpenModal(true);
+          }}
+        >
           {row.materials.length}
         </Design>
       ),
@@ -120,7 +127,7 @@ const Cases: FC = () => {
           onClick: () => setOpenModal(false),
         }}
       >
-        <div>test</div>
+        <MaterialList materials={selectedMaterials} />
       </Modal>
     </div>
   );
