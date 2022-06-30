@@ -8,6 +8,7 @@ import Loader from "../components/Loader";
 import Design from "../components/MaterialDesign/MaterialDesign";
 import MaterialIcon from "../components/MaterialIcon";
 import { toast } from "react-toastify";
+import Modal from "../components/modal/Modal";
 
 interface Selected {
   allSelected: boolean;
@@ -15,10 +16,18 @@ interface Selected {
   selectedRows: ICases[];
 }
 
+const formatDate = (date: Date) => {
+  const month = date.toLocaleString("en-us", { month: "long" });
+  const year = date.getFullYear();
+  const day = date.getDate();
+  return `${day} ${month} ${year}`;
+};
+
 const Cases: FC = () => {
   const [cases, setCases] = useState<ICases[]>([]);
   const [loading, setLoading] = useState(false);
   const [selected, setSelected] = useState<Selected>();
+  const [openModal, setOpenModal] = useState(false);
   const projectContext = useContext(ProjectContext);
   const { id } = projectContext.selectedProject;
 
@@ -33,14 +42,6 @@ const Cases: FC = () => {
   useEffect(() => {
     pullCases();
   }, [pullCases]);
-
-  const formatDate = (date: Date) => {
-    const month = date.toLocaleString("en-us", { month: "long" });
-    const year = date.getFullYear();
-    const day = date.getDate();
-    return `${day} ${month} ${year}`;
-  };
-
   const columns = [
     {
       name: "Id",
@@ -64,7 +65,11 @@ const Cases: FC = () => {
     },
     {
       name: "Material",
-      cell: (row: ICases) => <Design>{row.materials.length}</Design>,
+      cell: (row: ICases) => (
+        <Design onClick={() => setOpenModal(true)}>
+          {row.materials.length}
+        </Design>
+      ),
       sortable: true,
     },
     {
@@ -80,7 +85,6 @@ const Cases: FC = () => {
       sortable: true,
     },
   ];
-
   const deleteSelected = async () => {
     if (!selected) return;
     const { selectedRows } = selected;
@@ -106,6 +110,18 @@ const Cases: FC = () => {
           data={cases}
         />
       )}
+
+      <Modal
+        title="Materials"
+        open={openModal}
+        close={() => setOpenModal(false)}
+        primary={{
+          text: "Done",
+          onClick: () => setOpenModal(false),
+        }}
+      >
+        <div>test</div>
+      </Modal>
     </div>
   );
 };
