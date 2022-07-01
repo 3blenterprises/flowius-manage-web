@@ -91,6 +91,24 @@ const Cases: FC = () => {
       selector: (row: ICases) => formatDate(row.timestamp.toDate()),
       sortable: true,
     },
+    {
+      name: "Location",
+      cell: (c: ICases) => {
+        if (!c.geoLocation) return <div />;
+        const location = c.geoLocation.split("/");
+        const lat = location[0];
+        const lng = location[2];
+        return (
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href={`https://maps.google.com/?q=${lat},${lng}`}
+          >
+            <MaterialIcon className="text-flowius-blue" icon="share_location" />
+          </a>
+        );
+      },
+    },
   ];
   const deleteSelected = async () => {
     if (!selected) return;

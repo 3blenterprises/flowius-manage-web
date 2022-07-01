@@ -5,6 +5,7 @@ import App from "./App";
 import "./index.css";
 import "react-toastify/dist/ReactToastify.css";
 import "mapbox-gl/dist/mapbox-gl.css";
+import "react-vis/dist/style.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
