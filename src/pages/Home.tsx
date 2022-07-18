@@ -10,19 +10,25 @@ import {
   VerticalBarSeries,
 } from "react-vis";
 import CaseDetailPopUp from "../components/case/CaseDetail";
+import CloseClickOutside from "../components/ClickOutside";
 import Loader from "../components/Loader";
+import MaterialList from "../components/Material/MaterialList";
+import Modal from "../components/modal/Modal";
 import { ProjectContext } from "../context/ProjectContext";
 import { getProjectCases } from "../services/caseService";
-import { ICases } from "../services/orgTypes";
+import { ICases, Material } from "../services/orgTypes";
 
 const Home: FC = () => {
   const [cases, setCases] = useState<ICases[]>([]);
   const [loading, setLoading] = useState(false);
   const [pos, setPos] = useState<{ left: number; top: number }>();
   const [selectedCase, setCase] = useState<ICases>();
+  const [selectedMaterials, setMaterials] = useState<Material[]>([]);
+  const [openModal, setOpenModal] = useState(false);
 
   const projectContext = useContext(ProjectContext);
   const { id } = projectContext.selectedProject;
+  const [openTab, setOpenTab] = useState(1);
 
   const pullCases = useCallback(async () => {
     if (!id) return;
@@ -127,6 +133,7 @@ const Home: FC = () => {
           />
         )}
       </div>
+
       {loading && <Loader />}
     </div>
   );

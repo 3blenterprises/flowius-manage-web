@@ -4,6 +4,7 @@ import { Material } from "../../services/orgTypes";
 
 interface MaterialListProps {
   materials: Material[];
+  className: string;
 }
 
 const columns = [
@@ -19,7 +20,12 @@ const columns = [
   },
   {
     name: "Material",
-    selector: (row: Material) => `${row.material} ${row.size}`,
+    selector: (row: Material) => `${row.material}`,
+    sortable: true,
+  },
+  {
+    name: "Size",
+    selector: (row: Material) => row.size,
     sortable: true,
   },
   {
@@ -29,7 +35,7 @@ const columns = [
   },
 ];
 
-const MaterialList: FC<MaterialListProps> = ({ materials }) => {
+const MaterialList: FC<MaterialListProps> = ({ materials, className }) => {
   const [reload, setReload] = useState(false);
 
   useEffect(() => {
@@ -37,7 +43,7 @@ const MaterialList: FC<MaterialListProps> = ({ materials }) => {
   }, [materials]);
 
   return (
-    <div key={reload ? "1" : "2"} className="m-1">
+    <div key={reload ? "1" : "2"} className={`${className} m-1`}>
       <DataTable columns={columns} data={materials} />
     </div>
   );

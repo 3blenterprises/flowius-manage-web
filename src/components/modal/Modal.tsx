@@ -11,6 +11,7 @@ interface ModalProps {
   open: boolean;
   close: () => void;
   title: string;
+  className: string;
   primary?: ModalButtons;
   secondary?: ModalButtons;
   children?: React.ReactNode;
@@ -23,6 +24,7 @@ const Modal: FC<ModalProps> = ({
   primary,
   secondary,
   title,
+  className,
 }) => {
   return !open ? (
     <></>
@@ -36,7 +38,7 @@ const Modal: FC<ModalProps> = ({
         className=" relative w-full sm:w-1/2 xl:w-1/3 top-1/4 mx-auto "
         onClose={close}
       >
-        <div className="relative mx-auto p-2 w-full h-full max-w-2xl md:h-auto">
+        <div className={`${className} }`}>
           <div className="relative bg-white rounded-lg shadow ">
             <div className="flex justify-between items-start p-2 rounded-t border-b ">
               <h3 className="text-xl font-semibold text-gray-900 ">{title}</h3>
