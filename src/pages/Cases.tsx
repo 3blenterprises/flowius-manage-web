@@ -138,6 +138,7 @@ const Cases: FC = () => {
 
       <Modal
         title="Materials"
+        className="w-[200%] h-full relative  mx-auto  max-w-2xl md:h-auto"
         open={openModal}
         close={() => setOpenModal(false)}
         primary={{
@@ -145,7 +146,7 @@ const Cases: FC = () => {
           onClick: () => setOpenModal(false),
         }}
       >
-        <MaterialList materials={selectedMaterials} />
+        <MaterialList className={""} materials={selectedMaterials} />
       </Modal>
     </div>
   );
