@@ -79,6 +79,7 @@ const TopMenu = ({ user }: TopMenuProps) => {
             <span className="sr-only">Open user menu</span>
             <img
               className="w-8 h-8 rounded-full"
+              referrerPolicy="no-referrer"
               src={user.photoURL ?? ""}
               alt="user photo"
             />
@@ -86,7 +87,7 @@ const TopMenu = ({ user }: TopMenuProps) => {
           <CloseClickOutside onClose={() => setShowTopMenu(false)}>
             <div
               className={`top-avatar ${
-                showTopMenu ? "opacity-100" : "opacity-0"
+                showTopMenu ? "flex flex-col" : "hidden"
               } md:mr-0 mr-3 z-50 my-4 text-base list-none bg-white rounded divide-y divide-gray-100 shadow  `}
               id="dropdown"
             >

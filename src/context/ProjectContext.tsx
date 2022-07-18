@@ -11,8 +11,12 @@ interface ProjectContextState {
 export const ProjectContext = createContext<ProjectContextState>({
   projects: [],
   selectedProject: {} as Project,
-  setProjects: (_) => {},
-  setSelectedProject: (_) => {},
+  setProjects: (_) => {
+    /*noop*/
+  },
+  setSelectedProject: (_) => {
+    /*noop*/
+  },
 });
 
 const ProjectCtx = ({ children }: any) => {

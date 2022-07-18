@@ -3,11 +3,13 @@ import DataTable from "react-data-table-component";
 import Badge from "../components/badge/Badge";
 import { ProjectContext } from "../context/ProjectContext";
 import { deleteCase, getProjectCases } from "../services/caseService";
-import { ICases } from "../services/orgTypes";
+import { ICases, Material } from "../services/orgTypes";
 import Loader from "../components/Loader";
 import Design from "../components/MaterialDesign/MaterialDesign";
 import MaterialIcon from "../components/MaterialIcon";
 import { toast } from "react-toastify";
+import Modal from "../components/modal/Modal";
+import MaterialList from "../components/Material/MaterialList";
 
 interface Selected {
   allSelected: boolean;
@@ -15,10 +17,19 @@ interface Selected {
   selectedRows: ICases[];
 }
 
+export const formatDate = (date: Date) => {
+  const month = date.toLocaleString("en-us", { month: "long" });
+  const year = date.getFullYear();
+  const day = date.getDate();
+  return `${day} ${month} ${year}`;
+};
+
 const Cases: FC = () => {
   const [cases, setCases] = useState<ICases[]>([]);
   const [loading, setLoading] = useState(false);
   const [selected, setSelected] = useState<Selected>();
+  const [openModal, setOpenModal] = useState(false);
+  const [selectedMaterials, setMaterials] = useState<Material[]>([]);
   const projectContext = useContext(ProjectContext);
   const { id } = projectContext.selectedProject;
 
@@ -33,14 +44,6 @@ const Cases: FC = () => {
   useEffect(() => {
     pullCases();
   }, [pullCases]);
-
-  const formatDate = (date: Date) => {
-    const month = date.toLocaleString("en-us", { month: "long" });
-    const year = date.getFullYear();
-    const day = date.getDate();
-    return `${day} ${month} ${year}`;
-  };
-
   const columns = [
     {
       name: "Id",
@@ -64,7 +67,16 @@ const Cases: FC = () => {
     },
     {
       name: "Material",
-      cell: (row: ICases) => <Design>{row.materials.length}</Design>,
+      cell: (row: ICases) => (
+        <Design
+          onClick={() => {
+            setMaterials(row.materials);
+            setOpenModal(true);
+          }}
+        >
+          {row.materials.length}
+        </Design>
+      ),
       sortable: true,
     },
     {
@@ -79,8 +91,25 @@ const Cases: FC = () => {
       selector: (row: ICases) => formatDate(row.timestamp.toDate()),
       sortable: true,
     },
+    {
+      name: "Location",
+      cell: (c: ICases) => {
+        if (!c.geoLocation) return <div />;
+        const location = c.geoLocation.split("/");
+        const lat = location[0];
+        const lng = location[2];
+        return (
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href={`https://maps.google.com/?q=${lat},${lng}`}
+          >
+            <MaterialIcon className="text-flowius-blue" icon="share_location" />
+          </a>
+        );
+      },
+    },
   ];
-
   const deleteSelected = async () => {
     if (!selected) return;
     const { selectedRows } = selected;
@@ -106,6 +135,18 @@ const Cases: FC = () => {
           data={cases}
         />
       )}
+
+      <Modal
+        title="Materials"
+        open={openModal}
+        close={() => setOpenModal(false)}
+        primary={{
+          text: "Done",
+          onClick: () => setOpenModal(false),
+        }}
+      >
+        <MaterialList materials={selectedMaterials} />
+      </Modal>
     </div>
   );
 };
