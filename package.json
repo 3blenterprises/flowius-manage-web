@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@types/react-vis": "^1.11.11",
-    "firebase": "^9.8.4",
+    "firebase": "^9.10.0",
     "mapbox-gl": "^2.9.1",
     "react": "^18.0.0",
     "react-data-table-component": "^7.5.2",
