@@ -8,7 +8,7 @@ interface Props {
 
 const Selector = (props: Props) => {
   return (
-    <div className="flex ">
+    <div className="flex">
       <div className="mb-3 w-96">
         <label className="py-2 text-sm text-gray-500 capitalize">
           {props.label ?? ""}

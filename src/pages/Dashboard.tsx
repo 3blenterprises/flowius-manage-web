@@ -29,8 +29,8 @@ const DashBoard = ({ user }: DashboardProps) => {
 
   return (
     <BrowserRouter>
-      <TopMenu user={user} />
-      <div className="flex w-full h-[90vh]">
+      <TopMenu user={user}/>
+      <div className="flex w-full h-[90vh] bg-gray-900">
         <SideBar />
         <div className="container m-2 w-full overflow-auto">
           <Routes>

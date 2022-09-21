@@ -34,8 +34,8 @@ const TopMenu = ({ user }: TopMenuProps) => {
   };
 
   return (
-    <nav className="bg-white shadow-sm  border-gray-200  py-2.5 rounded ">
-      <div className="flex flex-wrap justify-between items-center mx-2 ">
+    <nav className="bg-gray-900 shadow-sm  border-gray-200  py-2.5 rounded">
+      <div className="flex flex-wrap justify-between items-center mx-2 bg-gray-800">
         <Link to="/" className="flex justify-center items-center">
           <img src={logo} className="mr-3 h-6 sm:h-9" alt="Flowius Logo" />
 
